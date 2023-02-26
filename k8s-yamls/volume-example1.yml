@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: redis
+  name: redis
+spec:
+  containers:
+  - image: redis
+    name: redis
+    volumeMounts:
+    - name: redis-storage-git
+      mountPath: /data/redis
+    resources: {}
+  volumes:
+  - name: redis-storage-git
+    gitRepo:
+      repository: https://github.com/renuchinta/k8s.git
+      revision: c54a38a
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}
